@@ -19,7 +19,7 @@ class MyWalletVC: UIViewController {
     }
     
     private func config() {
-        automaticallyAdjustsScrollViewInsets = false
+        //automaticallyAdjustsScrollViewInsets = false
         mainView.remainDaysLabel.text = "月卡剩余51天"
         mainView.balanceLabel.text = "4.00元"
         mainView.bonusLabel.text = "0.63元"

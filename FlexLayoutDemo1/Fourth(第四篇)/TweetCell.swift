@@ -340,19 +340,3 @@ extension String {
         return result
     }
 }
-
-
-
-
-extension Flex {
-    /// 是否进行布局计算及显示
-    public var isLayoutAndShow: Bool {
-        set {
-            isIncludedInLayout = newValue
-            self.view?.isHidden = !newValue
-        }
-        get {
-            return isIncludedInLayout && (self.view?.isHidden ?? false)
-        }
-    }
-}

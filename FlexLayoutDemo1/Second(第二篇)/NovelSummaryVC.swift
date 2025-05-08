@@ -65,7 +65,7 @@ class NovelSummaryVC: UIViewController {
         configLabel(wordCoundAndStateLabel, text: "266.0万字 | 连载")
         
         
-        rootFlex.flex.marginTop(64).define { flex in
+        rootFlex.flex.marginTop(88).define { flex in
             flex.addItem(summaryView).backgroundColor(.white).define { flex in
                 flex.addItem(bgImgV).position(.absolute).left(0).top(0).width(100%).height(100%)
                 // 浅绿色盒子, 横向排列子盒子, 距离父盒子(summaryView)左右外边距为15，顶底各12外边距

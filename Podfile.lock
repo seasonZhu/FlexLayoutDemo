@@ -1,24 +1,28 @@
 PODS:
-  - FlexLayout (1.3.9)
-  - Kingfisher (4.8.0)
-  - PinLayout (1.7.9)
+  - FlexLayout (2.2.0):
+    - Yoga (= 3.2.1)
+  - Kingfisher (8.3.2)
+  - PinLayout (1.10.5)
+  - Yoga (3.2.1)
 
 DEPENDENCIES:
-  - FlexLayout (= 1.3.9)
-  - Kingfisher (~> 4.8.0)
-  - PinLayout (= 1.7.9)
+  - FlexLayout
+  - Kingfisher
+  - PinLayout
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - FlexLayout
     - Kingfisher
     - PinLayout
+    - Yoga
 
 SPEC CHECKSUMS:
-  FlexLayout: dbe4b2da72ee63d7145cf32bb5bfba375aeeb9e6
-  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
-  PinLayout: 21ce87a865407a7a3c8a38a326611c476095fedf
+  FlexLayout: a8947ca2446760b5203ba5a3d862023c92a82fce
+  Kingfisher: 0621d0ac0c78fecb19f6dc5303bde2b52abaf2f5
+  PinLayout: f6c2b63a5a5b24864064e1d15c67de41b4e74748
+  Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: ccf85b7673a459c331bad6790724d0bb0fe19949
+PODFILE CHECKSUM: 25ae3db355fe8a365e6819d1f1ae9544f0aba41d
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.16.2

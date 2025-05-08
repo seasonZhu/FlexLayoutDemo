@@ -47,6 +47,7 @@ class MyWalletView: UIView {
     func configUI() {
         backgroundColor = .white
         mainContainer.backgroundColor = UIColor(white: 0.96, alpha: 1)
+        mainScroll.contentInsetAdjustmentBehavior = .never
         addSubview(rootFlex)
         
         let titleLabel = UILabel()
@@ -98,6 +99,8 @@ class MyWalletView: UIView {
         let (wxView, wxBtn, wxLabel) = createCell(title: "微信免密", subtitle: "未开通")
         let (moreView1, _, _) = createCell(title: "支付宝免密", subtitle: "未开通")
         let (moreView2, _, _) = createCell(title: "银联免密", subtitle: "未开通")
+        let (moreView3, _, _) = createCell(title: "微信免密", subtitle: "未开通")
+        let (moreView4, _, _) = createCell(title: "美团免密", subtitle: "未开通")
         
         // 赋值方便以后控制
         self.balanceLabel = balanceLabel
@@ -126,22 +129,35 @@ class MyWalletView: UIView {
         // 主框架结构
         rootFlex.flex.define { flex in
             flex.addItem(mainScroll).grow(1).shrink(1).define { flex in
+                /// 可以将内容结构里面的内容在addItem(mainContainer)后面进行define
                 flex.addItem(mainContainer)
             }
-            flex.addItem().direction(.row).alignItems(.center).height(60)
-                .backgroundColor(UIColor(white: 0.93, alpha: 1)).define { flex in
-                flex.addItem(lockIcon).width(20).marginHorizontal(20).aspectRatio(of: lockIcon)
-                flex.addItem(depositLabel).marginRight(20).grow(1).shrink(1)
-                flex.addItem(depositDetailBtn).paddingHorizontal(10).marginRight(14)
+            
+            flex.addItem().column().height(70).define { flex in
+                flex.addItem().direction(.row)
+                    .alignItems(.center)
+                    .height(60)
+                    .backgroundColor(UIColor(white: 0.93, alpha: 1))
+                    .define { flex in
+                        flex.addItem(lockIcon).width(20).marginHorizontal(20).aspectRatio(of: lockIcon)
+                        flex.addItem(depositLabel).marginRight(20).grow(1).shrink(1)
+                        flex.addItem(depositDetailBtn).paddingHorizontal(10).marginRight(14)
+                    }//添加这里一个让这一行下沉//.marginBottom(-39)
+                
+                flex.addSpacer().backgroundColor(UIColor(white: 0.93, alpha: 1))
             }
         }
         
         // 内容结构
         mainContainer.flex.paddingHorizontal(20).define { flex in
+            /// Label撑满一整行,所以改变轴对齐方式体现不出来
             flex.addItem(titleLabel).marginTop(30).marginBottom(18)
+            /// 宽高比,另外这里width必须给个100%,否则图片无法撑满
             flex.addItem(posterImgV).width(100%).aspectRatio(67/40).marginBottom(15).define { flex in
                 flex.addItem(posterTitleLabel).marginTop(16).marginLeft(20)
-                flex.addItem(posterSubtitleLabel).position(.absolute).left(20).bottom(16)
+                /// 通过Spacer进行占位,这样多用了一个view,但是布局都是相对的了
+                flex.addSpacer()
+                flex.addItem(posterSubtitleLabel).marginBottom(16).marginLeft(20)//.position(.absolute).left(20).bottom(16)
             }
             flex.addItem(cardInfoContainer).direction(.row).padding(20, 20, 20, 14)
                 .backgroundColor(.white).define { flex in
@@ -162,11 +178,13 @@ class MyWalletView: UIView {
             flex.addItem(wxView)
             flex.addItem(moreView1)
             flex.addItem(moreView2)
+            flex.addItem(moreView3)
+            flex.addItem(moreView4)
         }
     }
     
     func layout() {
-        rootFlex.flex.margin(pin.safeArea)
+        rootFlex.flex.margin(pin.safeArea.top, pin.safeArea.left, 0, pin.safeArea.right)
         rootFlex.flex.layout()
         mainContainer.flex.layout(mode: .adjustHeight)
     }
@@ -229,5 +247,31 @@ extension MyWalletView {
     @objc fileprivate func wxStateButtonClick() {
         print("点击微信")
         onWXPassStateClicked?()
+    }
+}
+
+extension Flex {
+    @discardableResult
+    func addSpacer(_ value: CGFloat = 1) -> Flex {
+        addItem().grow(value).shrink(value)
+    }
+    
+    func row() -> Flex {
+        direction(.row)
+    }
+    
+    func column() -> Flex {
+        direction(.column)
+    }
+    
+    /// 是否进行布局计算及显示
+    var isLayoutAndShow: Bool {
+        set {
+            isIncludedInLayout = newValue
+            self.view?.isHidden = !newValue
+        }
+        get {
+            return isIncludedInLayout && (self.view?.isHidden ?? false)
+        }
     }
 }
