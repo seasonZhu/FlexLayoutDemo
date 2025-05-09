@@ -12,6 +12,7 @@ target 'FlexLayoutDemo1' do
   pod 'Kingfisher'
   
   pod 'RxCocoa'
+  pod 'RxGesture'
   pod 'NSObject+Rx'
   
   pod 'Hero'

@@ -12,6 +12,7 @@ import FlexLayout
 
 import RxCocoa
 import NSObject_Rx
+import RxGesture
 
 let ScreenHeight = UIScreen.main.bounds.height
 let ScreenWidth = UIScreen.main.bounds.width
@@ -27,6 +28,9 @@ class BCZViewController: UIViewController {
     private(set) var loginBtn: UIButton!
     private(set) var otherBtn: UIButton!
     
+    private let animatedView = UIView()
+    
+    var size = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +97,48 @@ class BCZViewController: UIViewController {
         view.addSubview(rootFlexContainer)
         
         let logoImgV = UIImageView(image: UIImage(named: "bcz_logo"))
+        logoImgV.rx.tapGesture().subscribe(onNext: ({ [weak self] _ in
+            guard let self else {
+                return
+            }
+            
+            self.size = self.size + 10
+            // 修改高度
+            self.animatedView.flex.size(CGSize(width: self.size, height: self.size))
+            
+//            self.animatedView.alpha = 0
+            // 重新布局
+            self.rootFlexContainer.flex.layout()
+            // 这里需要刷新其父类布局,刷新自己是没有办法更新大小的
+            //self.animatedView.flex.layout()
+            
+//            view.setNeedsLayout()
+//            
+//            UIView.animate(withDuration: 0.3) {
+//                self.view.layoutIfNeeded()
+//            }
+        })).disposed(by: rx.disposeBag)
+        
+        let logoImgV1 = UIImageView(image: UIImage(named: "bike_bg"))
+        logoImgV1.rx.tapGesture().subscribe(onNext: ({ [weak self] _ in
+            guard let self else {
+                return
+            }
+            
+            
+            self.size = self.size - 10
+            // 修改高度
+            self.animatedView.flex.size(CGSize(width: self.size, height: self.size))
+            
+//            self.animatedView.alpha = 1
+            
+            view.setNeedsLayout()
+
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        })).disposed(by: rx.disposeBag)
+        
         wechatBtn = createButton(title: "微信登录", bgColor: UIColor(0.1, 0.7, 0.04, 1))
         qqBtn     = createButton(title: "QQ登录", bgColor: UIColor(0.3, 0.38, 0.57, 1))
         phoneBtn  = createButton(title: "手机注册", bgColor: UIColor(0.26, 0.69, 0.96, 1))
@@ -106,7 +152,12 @@ class BCZViewController: UIViewController {
         // 每次用它俩的百分比都会导致莫名的坑, 所以暂不建议使用marginTop, marginBottom的百分比方法
         // 这里折中使用屏幕高度百分比来计算值
         rootFlexContainer.flex.alignItems(.center).define { flex in
-            flex.addItem(logoImgV).width(30%).marginTop(ScreenHeight * 0.18).aspectRatio(1)
+            flex.addItem().row().justifyContent(.spaceEvenly).width(100%).marginTop(ScreenHeight * 0.18).define { flex in
+                flex.addItem(logoImgV).width(30%).aspectRatio(1)
+                flex.addItem(logoImgV1).width(30%).aspectRatio(67/40)
+            }
+            
+            flex.addItem(animatedView).size(CGSize(width: size, height: size)).backgroundColor(.systemBlue).margin(.init(top: 20, left: 20, bottom: 20, right: 20))
             flex.addItem().grow(1).shrink(1) // 占位弹簧
             flex.addItem().justifyContent(.center).width(73%)
                 .height(24%).marginBottom(ScreenHeight * 0.1).define { flex in
