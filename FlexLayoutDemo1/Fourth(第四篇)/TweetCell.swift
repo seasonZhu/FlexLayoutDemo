@@ -86,8 +86,8 @@ class TweetCell: UITableViewCell {
         case .landscapeLeft, .landscapeRight:
             print("横屏")
             width = ScreenHeight
-            
-            let imgWidth = CGFloat(Int(width - 2 * 13/*左右外边距*/ - 2 * imageSpacing) / 3/*列数*/)
+            /// 通过分析,横屏的距离是47,于是建了一下
+            let imgWidth = CGFloat(Int(width - 2 * 13/*左右外边距*/ - 2 * imageSpacing - 47) / 3/*列数*/)
             for imgV in imgs {
                 imgV.flex.width(imgWidth).height(imgWidth)
             }
