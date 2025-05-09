@@ -39,6 +39,7 @@ class TweetStore {
 
 
 class TweetItem: Codable {
+    var objectId              = ""
     var uid                   = ""     //  "5677785f60b2298f122fe889",
     var user: User?                    //  {
     var content               = ""     //  "不要写代码，不要读博。",
@@ -60,7 +61,7 @@ class TweetItem: Codable {
     var cellHeight: CGFloat?                  // cell高度
     
     enum CodingKeys: String, CodingKey {
-        case uid, user, content, pictures, url, urlTitle, urlPic, commentCount, likedCount, isLiked, createdAt, updatedAt, topicId, topic, isTopicRecommend, folded
+        case objectId, uid, user, content, pictures, url, urlTitle, urlPic, commentCount, likedCount, isLiked, createdAt, updatedAt, topicId, topic, isTopicRecommend, folded
     }
 }
 
