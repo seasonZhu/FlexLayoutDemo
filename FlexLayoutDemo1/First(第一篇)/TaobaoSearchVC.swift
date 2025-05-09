@@ -7,16 +7,24 @@
 //
 
 import UIKit
+
 import FlexLayout
 
+import RxCocoa
+import NSObject_Rx
+import RxGesture
 
 class TaobaoSearchVC: UIViewController {
     
     let rootFlexContainer = UIView()
+    
     private var historyTagButtons = [UIButton]()
+    
     private var discoverTagButtons = [UIButton]()
+    
     private let tagButtonHeight: CGFloat = 26
     
+    var historyContainer: Flex?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +51,49 @@ class TaobaoSearchVC: UIViewController {
         
         let delButton = UIButton()
         delButton.setImage(UIImage(named: "delete"), for: .normal)
+        
+        delButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self else {
+                return
+            }
+            
+            if delButton.isSelected {
+                for btn in historyTagButtons {
+                    btn.removeFromSuperview()
+                }
+            } else {
+                for btn in historyTagButtons {
+                    historyContainer?.addItem(btn).marginRight(10).paddingHorizontal(12).marginTop(10)
+                }
+            }
+            
+            delButton.isSelected = !delButton.isSelected
+            
+            rootFlexContainer.flex.layout()
+            
+        }).disposed(by: rx.disposeBag)
+        
         let seeButton = UIButton()
         seeButton.setImage(UIImage(named: "eye"), for: .normal)
+        
+        seeButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self else {
+                return
+            }
+            
+            for btn in discoverTagButtons {
+                if seeButton.isSelected {
+                    btn.flex.isLayoutAndShow = true
+                } else {
+                    btn.flex.isLayoutAndShow = false
+                }
+            }
+            
+            seeButton.isSelected = !seeButton.isSelected
+            
+            rootFlexContainer.flex.layout()
+            
+        }).disposed(by: rx.disposeBag)
         
         for tag in historyTags {
             let btn = createTagButton()
@@ -58,19 +107,26 @@ class TaobaoSearchVC: UIViewController {
         }
         
         rootFlexContainer.flex.padding(10).define { flex in
+            
             flex.addItem().direction(.row).justifyContent(.spaceBetween).define { flex in
                 flex.addItem(histLabel)
-                flex.addItem(delButton)
+                flex.addItem(delButton).size(CGSize(width: 44, height: 44))
             }
+            
             flex.addItem().direction(.row).wrap(.wrap).marginBottom(15).define { flex in
+                
+                historyContainer = flex
+                
                 for btn in historyTagButtons {
                     flex.addItem(btn).marginRight(10).paddingHorizontal(12).marginTop(10)
                 }
             }
+            
             flex.addItem().direction(.row).justifyContent(.spaceBetween).define { flex in
                 flex.addItem(disLabel)
-                flex.addItem(seeButton)
+                flex.addItem(seeButton).size(CGSize(width: 44, height: 44))
             }
+            
             flex.addItem().direction(.row).wrap(.wrap).marginBottom(15).define { flex in
                 for btn in discoverTagButtons {
                     flex.addItem(btn).marginRight(8).paddingHorizontal(12).marginTop(10)
@@ -100,5 +156,9 @@ class TaobaoSearchVC: UIViewController {
         }
         rootFlexContainer.frame = view.bounds
         rootFlexContainer.flex.layout(mode: .adjustHeight)
+    }
+    
+    deinit {
+        print("\(TaobaoSearchVC.self) deinit")
     }
 }
