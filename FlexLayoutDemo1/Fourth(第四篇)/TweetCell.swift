@@ -39,6 +39,8 @@ class TweetCell: UITableViewCell {
     
     fileprivate var item: TweetItem?
     
+    fileprivate var width = ScreenWidth
+    
     /// 9图的间隙
     fileprivate let imageSpacing: CGFloat = 4
     
@@ -46,6 +48,7 @@ class TweetCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configUI()
+        addObserver()
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -53,6 +56,51 @@ class TweetCell: UITableViewCell {
     
     deinit {
         print("deinit")
+        // 移除通知监听
+        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    func addObserver() {
+        
+        // 开始监听设备方向变化
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleDeviceOrientationChange),
+            name: UIDevice.orientationDidChangeNotification,
+            object: nil
+        )
+    }
+    
+    @objc func handleDeviceOrientationChange() {
+        let orientation = UIDevice.current.orientation
+        switch orientation {
+        case .portrait:
+            print("竖屏")
+            width = ScreenWidth
+            
+            let imgWidth = CGFloat(Int(width - 2 * 13/*左右外边距*/ - 2 * imageSpacing) / 3/*列数*/)
+            for imgV in imgs {
+                imgV.flex.width(imgWidth).height(imgWidth)
+            }
+            
+        case .landscapeLeft, .landscapeRight:
+            print("横屏")
+            width = ScreenHeight
+            
+            let imgWidth = CGFloat(Int(width - 2 * 13/*左右外边距*/ - 2 * imageSpacing) / 3/*列数*/)
+            for imgV in imgs {
+                imgV.flex.width(imgWidth).height(imgWidth)
+            }
+        default:
+            print("其他方向")
+            width = ScreenWidth
+            
+            let imgWidth = CGFloat(Int(width - 2 * 13/*左右外边距*/ - 2 * imageSpacing) / 3/*列数*/)
+            for imgV in imgs {
+                imgV.flex.width(imgWidth).height(imgWidth)
+            }
+        }
+        layout()
     }
     
     private func configUI() {
@@ -143,7 +191,7 @@ class TweetCell: UITableViewCell {
             flex.addItem(imagesContainer).direction(.row).wrap(.wrap).marginRight(-4)
                 .marginLeft(1).marginTop(10).define{ flex in
                 // 每个图片view宽度
-                let imgWidth = CGFloat(Int(ScreenWidth - 2 * 13/*左右外边距*/ - 2 * imageSpacing) / 3/*列数*/)
+                let imgWidth = CGFloat(Int(width - 2 * 13/*左右外边距*/ - 2 * imageSpacing) / 3/*列数*/)
                 for imgV in imgs {
                     flex.addItem(imgV).width(imgWidth).height(imgWidth).marginRight(imageSpacing)
                         .marginTop(imageSpacing).backgroundColor(.lightGray)
