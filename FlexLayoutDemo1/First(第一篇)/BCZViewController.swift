@@ -7,7 +7,11 @@
 //
 
 import UIKit
+
 import FlexLayout
+
+import RxCocoa
+import NSObject_Rx
 
 let ScreenHeight = UIScreen.main.bounds.height
 let ScreenWidth = UIScreen.main.bounds.width
@@ -28,14 +32,50 @@ class BCZViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         configUI()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            // ...模拟: 检查到设备没有安装微信...
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            // ...模拟: 检查到设备没有安装微信...
+//            self.hideButton(self.wechatBtn)
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            // ...模拟: 产品经理突然说不开放注册了, 只准登录...
+//            self.hideButton(self.phoneBtn)
+//        }
+        
+        wechatBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self else {
+                return
+            }
+            
             self.hideButton(self.wechatBtn)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            // ...模拟: 产品经理突然说不开放注册了, 只准登录...
+            
+        }).disposed(by: rx.disposeBag)
+        
+        phoneBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self else {
+                return
+            }
+            
             self.hideButton(self.phoneBtn)
-        }
+            
+        }).disposed(by: rx.disposeBag)
+        
+        qqBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self else {
+                return
+            }
+            
+            self.showButton(self.wechatBtn)
+            
+        }).disposed(by: rx.disposeBag)
+        
+        loginBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self else {
+                return
+            }
+            
+            self.showButton(self.phoneBtn)
+            
+        }).disposed(by: rx.disposeBag)
     }
     
     // 点击显示导航栏
@@ -74,7 +114,7 @@ class BCZViewController: UIViewController {
                     flex.addItem(qqBtn).height(buttonHeight).marginBottom(10)
                     flex.addItem().direction(.row).height(buttonHeight).define { flex in
                         flex.addItem(phoneBtn).width(62%).marginRight(10)
-                        flex.addItem(loginBtn).grow(1)
+                        flex.addItem(loginBtn).grow(1)//.marginLeft(10)
                     }
             }
             flex.addItem(otherBtn).marginBottom(20)
@@ -83,11 +123,38 @@ class BCZViewController: UIViewController {
     
     
     func hideButton(_ btn: UIButton) {
-        btn.flex.isIncludedInLayout = false
-        btn.isHidden = true
+//        btn.flex.isIncludedInLayout = false
+//        btn.isHidden = true
+        
+        
+        /// 这个分类扩展是对上面的简写
+        btn.flex.isLayoutAndShow = false
+        
+        
         view.setNeedsLayout()
+        /// 虽然self.rootFlexContainer.flex.layout()也可以刷新动画,但是会将上面的logo也刷新了,出现了抖动,体验不好
+        //self.rootFlexContainer.flex.layout()
+        
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
+            //self.rootFlexContainer.flex.layout()
+        }
+        
+        /// 这里的view.setNeedsLayout()与UIView.animate(withDuration: 0.3)闭包里面的self.view.layoutIfNeeded()一定要成对出现才能达到理想的动画效果
+    }
+    
+    func showButton(_ btn: UIButton) {
+//        btn.flex.isIncludedInLayout = true
+//        btn.isHidden = false
+        
+        btn.flex.isLayoutAndShow = true
+        
+        view.setNeedsLayout()
+        //self.rootFlexContainer.flex.layout()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+            //self.rootFlexContainer.flex.layout()
         }
     }
     

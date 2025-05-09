@@ -8,8 +8,14 @@ target 'FlexLayoutDemo1' do
   # Pods for FlexLayoutDemo1
   pod 'FlexLayout'
   pod 'PinLayout'
+  
   pod 'Kingfisher'
-
+  
+  pod 'RxCocoa'
+  pod 'NSObject+Rx'
+  
+  pod 'Hero'
+  
   # Debug only
   # pod 'Reveal-SDK', '4', :configurations => ['Debug']
 

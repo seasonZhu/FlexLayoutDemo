@@ -1,28 +1,50 @@
 PODS:
   - FlexLayout (2.2.0):
     - Yoga (= 3.2.1)
+  - Hero (1.6.4)
   - Kingfisher (8.3.2)
+  - "NSObject+Rx (5.2.2)":
+    - RxSwift (~> 6.2)
   - PinLayout (1.10.5)
+  - RxCocoa (6.9.0):
+    - RxRelay (= 6.9.0)
+    - RxSwift (= 6.9.0)
+  - RxRelay (6.9.0):
+    - RxSwift (= 6.9.0)
+  - RxSwift (6.9.0)
   - Yoga (3.2.1)
 
 DEPENDENCIES:
   - FlexLayout
+  - Hero
   - Kingfisher
+  - "NSObject+Rx"
   - PinLayout
+  - RxCocoa
 
 SPEC REPOS:
   trunk:
     - FlexLayout
+    - Hero
     - Kingfisher
+    - "NSObject+Rx"
     - PinLayout
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - Yoga
 
 SPEC CHECKSUMS:
   FlexLayout: a8947ca2446760b5203ba5a3d862023c92a82fce
+  Hero: 473a0143017e1371d050fcbedb67d317925097f2
   Kingfisher: 0621d0ac0c78fecb19f6dc5303bde2b52abaf2f5
+  "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   PinLayout: f6c2b63a5a5b24864064e1d15c67de41b4e74748
+  RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
+  RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
+  RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
   Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: 25ae3db355fe8a365e6819d1f1ae9544f0aba41d
+PODFILE CHECKSUM: 25df13ebe0bc8471907b19302e9cd451c16851f5
 
 COCOAPODS: 1.16.2
