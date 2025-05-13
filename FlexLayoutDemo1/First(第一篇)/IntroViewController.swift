@@ -28,6 +28,27 @@ class IntroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        //setupUI()
+    }
+    
+    private func setupUI() {
+        view.backgroundColor = .white
+        view.addSubview(rootFlexContainer)
+        
+        rootFlexContainer.flex.define { flex in
+            // 定义一个列
+            flex.addItem().direction(.column).define { column in
+                // 在列中添加一个行
+                column.addItem().direction(.row).define { row in
+                    // 在行中添加子视图
+                    row.addItem(UIView()).width(50).height(50).backgroundColor(.red)
+                    row.addItem(UIView()).width(50).height(50).backgroundColor(.blue)
+                }
+
+                // 在列中添加另一个子视图
+                column.addItem(UIView()).width(100).height(50).backgroundColor(.green)
+            }
+        }
     }
     
     
@@ -52,15 +73,32 @@ class IntroViewController: UIViewController {
         
         rootFlexContainer.flex.padding(12).define { flex in
             flex.addItem().direction(.row).define { flex in
-                flex.addItem(imageView).width(100).aspectRatio(of: imageView)
+                flex.addItem().column().define { flex in
+                    flex.addItem(imageView).width(100).aspectRatio(of: imageView)
+                    flex.addItem(imageView1).width(100).aspectRatio(of: imageView1)
+                }
+                
                 flex.addItem().paddingLeft(12).grow(1).shrink(1).define { flex in
-                    flex.addItem(segmentedControl).marginBottom(12).grow(1)
+                    flex.addItem(segmentedControl).marginBottom(12)
                     flex.addItem(label)
                 }
             }
             // 分隔线
             flex.addItem().height(1).marginTop(12).backgroundColor(.lightGray)
             flex.addItem(bottomLabel).marginTop(12)
+            
+            /// 不管是行里加列,还是列里加行,都是可以的,就是需要设置宽高,保证可以撑起来,可以多调试几次
+            flex.addItem().direction(.row).marginTop(20).define { flex in
+                // 在列中添加一个行
+                flex.addItem().direction(.column).grow(1).define { flex in
+                    // 在行中添加子视图
+                    flex.addItem(UIView()).height(50).backgroundColor(.red)
+                    flex.addItem(UIView()).height(50).backgroundColor(.blue)
+                }
+
+                // 在列中添加另一个子视图
+                flex.addItem(UIView()).paddingLeft(12).grow(1).backgroundColor(.green)
+            }
         }
         
         segmentedControl.rx.selectedSegmentIndex.subscribe(onNext: { [weak self] selectIndex in
@@ -75,18 +113,18 @@ class IntroViewController: UIViewController {
             bottomLabel.text = self?.bottomLabelText[index]
             bottomLabel.flex.markDirty()
             
-//            if index == 0 {
-//                imageView.flex.isLayoutAndShow = true
-//                imageView1.flex.isLayoutAndShow = true
-//            } else if index == 1 {
-//                imageView.flex.isLayoutAndShow = true
-//                imageView1.flex.isLayoutAndShow = false
-//            } else if index == 2 {
-//                imageView.flex.isLayoutAndShow = false
-//                imageView1.flex.isLayoutAndShow = true
-//            } else {
-//                
-//            }
+            if index == 0 {
+                imageView.flex.isLayoutAndShow = true
+                imageView1.flex.isLayoutAndShow = true
+            } else if index == 1 {
+                imageView.flex.isLayoutAndShow = true
+                imageView1.flex.isLayoutAndShow = false
+            } else if index == 2 {
+                imageView.flex.isLayoutAndShow = false
+                imageView1.flex.isLayoutAndShow = true
+            } else {
+                
+            }
             
             self?.rootFlexContainer.flex.layout(mode: .adjustHeight)
         }).disposed(by: rx.disposeBag)
