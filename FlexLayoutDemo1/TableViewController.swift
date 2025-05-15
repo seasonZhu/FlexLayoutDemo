@@ -50,6 +50,17 @@ class TableViewController: UITableViewController {
             default:
                 break
             }
+        case 4:
+            switch indexPath.row {
+            case 0:
+                navigationController?.pushViewController(ReBuildController(), animated: true)
+            case 1:
+                navigationController?.pushViewController(DisplayFuncController(), animated: true)
+            case 2:
+                navigationController?.pushViewController(BoxSizingController(), animated: true)
+            default:
+                break
+            }
         default:
             break
         }

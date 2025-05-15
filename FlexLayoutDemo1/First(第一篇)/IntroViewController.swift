@@ -133,11 +133,8 @@ class IntroViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if #available(iOS 11, *) {
-            rootFlexContainer.flex.margin(view.safeAreaInsets)
-        } else {
-            rootFlexContainer.flex.margin(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-        }
+        rootFlexContainer.flex.margin(view.safeAreaInsets)
+        
         rootFlexContainer.frame = view.bounds
         rootFlexContainer.flex.layout(mode: .adjustHeight)
     }

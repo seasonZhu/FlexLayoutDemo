@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00B99F0B2DD5B852009591C7 /* ReBuildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0A2DD5B852009591C7 /* ReBuildController.swift */; };
+		00B99F0D2DD5B915009591C7 /* DisplayFuncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */; };
+		00B99F0F2DD5BFB0009591C7 /* BoxSizingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */; };
 		70292FAF20F890C7008D8116 /* NovelSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70292FAE20F890C7008D8116 /* NovelSummaryVC.swift */; };
 		7091DD052100D57400774FE9 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7091DD042100D57400774FE9 /* MD5.swift */; };
 		7099432420F870A700028FC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7099432320F870A700028FC5 /* AppDelegate.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00B99F0A2DD5B852009591C7 /* ReBuildController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReBuildController.swift; sourceTree = "<group>"; };
+		00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayFuncController.swift; sourceTree = "<group>"; };
+		00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxSizingController.swift; sourceTree = "<group>"; };
 		32B04B33AD8C665D5D6A1943 /* Pods-FlexLayoutDemo1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexLayoutDemo1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlexLayoutDemo1/Pods-FlexLayoutDemo1.debug.xcconfig"; sourceTree = "<group>"; };
 		4A467560ED50C3B071122EA0 /* Pods_FlexLayoutDemo1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlexLayoutDemo1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF12C789CF5226674579F9C /* Pods-FlexLayoutDemo1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexLayoutDemo1.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlexLayoutDemo1/Pods-FlexLayoutDemo1.release.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +68,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00B99F092DD5B82F009591C7 /* Fifth(第五篇) */ = {
+			isa = PBXGroup;
+			children = (
+				00B99F0A2DD5B852009591C7 /* ReBuildController.swift */,
+				00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */,
+				00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */,
+			);
+			path = "Fifth(第五篇)";
+			sourceTree = "<group>";
+		};
 		70292FAD20F88FEC008D8116 /* Second(第二篇) */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +116,7 @@
 		7099432220F870A700028FC5 /* FlexLayoutDemo1 */ = {
 			isa = PBXGroup;
 			children = (
+				00B99F092DD5B82F009591C7 /* Fifth(第五篇) */,
 				70FDFA5520FF8FCF00FAA8FE /* Fourth(第四篇) */,
 				706B5EC020FCA1E200019E1E /* Third(第三篇) */,
 				70292FAD20F88FEC008D8116 /* Second(第二篇) */,
@@ -274,10 +291,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				70292FAF20F890C7008D8116 /* NovelSummaryVC.swift in Sources */,
+				00B99F0F2DD5BFB0009591C7 /* BoxSizingController.swift in Sources */,
 				70FDFA6120FF9E2600FAA8FE /* TweetStore.swift in Sources */,
 				7091DD052100D57400774FE9 /* MD5.swift in Sources */,
 				7099433D20F8751D00028FC5 /* BCZViewController.swift in Sources */,
+				00B99F0B2DD5B852009591C7 /* ReBuildController.swift in Sources */,
 				7099433B20F874D400028FC5 /* TaobaoSearchVC.swift in Sources */,
+				00B99F0D2DD5B915009591C7 /* DisplayFuncController.swift in Sources */,
 				7099433920F8732B00028FC5 /* IntroViewController.swift in Sources */,
 				70FDFA5920FF905500FAA8FE /* TweetListVC.swift in Sources */,
 				7099432420F870A700028FC5 /* AppDelegate.swift in Sources */,

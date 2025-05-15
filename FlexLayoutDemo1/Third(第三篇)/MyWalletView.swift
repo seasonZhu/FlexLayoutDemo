@@ -274,4 +274,8 @@ extension Flex {
             return isIncludedInLayout && (self.view?.isHidden ?? false)
         }
     }
+    
+    func removeAllElement() {
+        view?.subviews.forEach { $0.removeFromSuperview() }
+    }
 }
