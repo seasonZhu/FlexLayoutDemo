@@ -17,13 +17,21 @@ import FlexLayout
  可用的 Display 值：
  .flex：视图参与 Flex 布局（默认值）。
  .none：视图不参与布局，相当于隐藏视图。
+ 
+ Flex.Display.contents 是 FlexLayout（通常指 FlexLayout for Swift）中的一个枚举值，对应 CSS 的 display: contents。
+ 它的作用是：让当前视图本身不参与布局，但它的子视图会像提升到父视图一样参与布局。
+
+ 使用场景
+ 你希望某个容器视图本身不占空间、不渲染，但它的子视图依然参与父视图的布局。
+ 适合做分组、逻辑包裹，但不希望影响布局结构。
  */
 
 class DisplayFuncController: UIViewController {
     let rootFlexContainer = UIView()
+    
     let toggleView = UIView()
     
-    var isHidden = true
+    let contentsView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +44,19 @@ class DisplayFuncController: UIViewController {
             // 添加一个子视图
             flex.addItem(toggleView).width(100).height(100).backgroundColor(.red)
             flex.addItem().width(100).height(100).backgroundColor(.blue)
+            
+            flex.addItem(contentsView).row().justifyContent(.center).alignItems(.stretch).height(100).define { flex in
+                flex.addItem().width(100).height(100).backgroundColor(.systemBlue)
+                flex.addItem().width(100).height(100).backgroundColor(.systemGray)
+            }
         }
 
         // 初始时隐藏 toggleView
         toggleView.flex.display(.none)
-        isHidden = true
+        
+        /// 此时的可以理解为将systemBlue与systemGray的两个方块从contentsView的这个行的布局这种移除,根据父级的rootFlexContainer来进行布局,rootFlexContainer是列布局,所以变成上下了
+        /// 点击按钮之后,systemBlue与systemGray的两个方块回到contentsView的布局,列 -> 行了
+        contentsView.flex.display(.contents)
 
         // 添加按钮用于切换显示状态
         let toggleButton = UIButton(type: .system)
@@ -53,8 +69,9 @@ class DisplayFuncController: UIViewController {
 
     @objc func toggleDisplay() {
         // 切换 display 属性
-        toggleView.flex.display(isHidden ? .flex : .none)
-        isHidden = !isHidden
+        toggleView.flex.display(toggleView.flex.displayIsNone ? .flex : .none)
+        
+        contentsView.flex.display(contentsView.flex.displayIsContents ? .flex : .contents)
 
         // 更新布局
         rootFlexContainer.flex.layout()
