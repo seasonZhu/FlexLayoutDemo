@@ -74,8 +74,8 @@ class IntroViewController: UIViewController {
         rootFlexContainer.flex.padding(12).define { flex in
             flex.addItem().direction(.row).define { flex in
                 flex.addItem().column().define { flex in
-                    flex.addItem(imageView).width(100).aspectRatio(of: imageView)
-                    flex.addItem(imageView1).width(100).aspectRatio(of: imageView1)
+                    flex.addItem(imageView).width(100).aspectRatio(of: imageView).display(.flex)
+                    flex.addItem(imageView1).width(100).aspectRatio(of: imageView1).display(.flex)
                 }
                 
                 flex.addItem().paddingLeft(12).grow(1).shrink(1).define { flex in
@@ -113,15 +113,22 @@ class IntroViewController: UIViewController {
             bottomLabel.text = self?.bottomLabelText[index]
             bottomLabel.flex.markDirty()
             
+            /// 我个人感觉isLayoutAndShow没有自带的display()好用
             if index == 0 {
-                imageView.flex.isLayoutAndShow = true
-                imageView1.flex.isLayoutAndShow = true
+//                imageView.flex.isLayoutAndShow = true
+//                imageView1.flex.isLayoutAndShow = true
+                imageView.flex.display(.flex)
+                imageView1.flex.display(.flex)
             } else if index == 1 {
-                imageView.flex.isLayoutAndShow = true
-                imageView1.flex.isLayoutAndShow = false
+//                imageView.flex.isLayoutAndShow = true
+//                imageView1.flex.isLayoutAndShow = false
+                imageView.flex.display(.flex)
+                imageView1.flex.display(.none)
             } else if index == 2 {
-                imageView.flex.isLayoutAndShow = false
-                imageView1.flex.isLayoutAndShow = true
+//                imageView.flex.isLayoutAndShow = false
+//                imageView1.flex.isLayoutAndShow = true
+                imageView.flex.display(.none)
+                imageView1.flex.display(.flex)
             } else {
                 
             }

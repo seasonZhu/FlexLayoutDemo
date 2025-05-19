@@ -28,8 +28,8 @@ class BoxSizingController: UIViewController {
 
         rootFlexContainer.flex.marginTop(88).define { flex in
             // 使用 contentBox（默认）
-            // 100 + left 10 + right 10 or 100 + top 10 + bottom 10
-            flex.addItem().width(100).height(100).padding(10).backgroundColor(.red).boxSizing(.contentBox)
+            // 100 + left 10 + right 10 or 100 + top 10 + bottom 10 注意.contentBox只对padding有效果,对于margin是没有效果的
+            flex.addItem().width(100).height(100).padding(10).margin(20).backgroundColor(.red).boxSizing(.contentBox)
 
             // 使用 borderBox 100 * 100
             flex.addItem().width(100).height(100).padding(10).backgroundColor(.blue).boxSizing(.borderBox)
