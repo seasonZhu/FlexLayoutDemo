@@ -386,7 +386,7 @@ class TweetCell: UITableViewCell {
     /// 都会调用
     /// 所以我认为在layoutSubviews里面刷新就可以了 ❌
     /// sizeThatFits调用layout()方法可以保证布局不乱 ✅
-    /// sizeThatFits()里面不调用,只在layoutSubviews()里面调用,布局会乱
+    /// sizeThatFits()里面不调用layout(),只在layoutSubviews()里面调用layout(),布局会乱
 }
 
 

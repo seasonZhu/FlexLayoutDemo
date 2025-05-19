@@ -15,6 +15,7 @@ PODS:
   - RxRelay (6.9.0):
     - RxSwift (= 6.9.0)
   - RxSwift (6.9.0)
+  - SnapKit (5.7.1)
   - Yoga (3.2.1)
 
 DEPENDENCIES:
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - PinLayout
   - RxCocoa
   - RxGesture
+  - SnapKit
 
 SPEC REPOS:
   trunk:
@@ -37,6 +39,7 @@ SPEC REPOS:
     - RxGesture
     - RxRelay
     - RxSwift
+    - SnapKit
     - Yoga
 
 SPEC CHECKSUMS:
@@ -49,8 +52,9 @@ SPEC CHECKSUMS:
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
   RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: a88083ea05ddfdccaa97d5d18aa7e9ca28634429
+PODFILE CHECKSUM: 6a6be0d75bdc5d90a0cfd98366667a7533bcf7c0
 
 COCOAPODS: 1.16.2

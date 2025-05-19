@@ -15,6 +15,8 @@ target 'FlexLayoutDemo1' do
   pod 'RxGesture'
   pod 'NSObject+Rx'
   
+  pod 'SnapKit'
+  
   pod 'Hero'
   
   # Debug only

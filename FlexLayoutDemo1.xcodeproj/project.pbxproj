@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003572D22DDAE23500810FD6 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003572D12DDAE23500810FD6 /* SnapKitLayoutController.swift */; };
 		00B99F0B2DD5B852009591C7 /* ReBuildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0A2DD5B852009591C7 /* ReBuildController.swift */; };
 		00B99F0D2DD5B915009591C7 /* DisplayFuncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */; };
 		00B99F0F2DD5BFB0009591C7 /* BoxSizingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		003572D12DDAE23500810FD6 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
 		00B99F0A2DD5B852009591C7 /* ReBuildController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReBuildController.swift; sourceTree = "<group>"; };
 		00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayFuncController.swift; sourceTree = "<group>"; };
 		00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxSizingController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				00B99F0A2DD5B852009591C7 /* ReBuildController.swift */,
 				00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */,
 				00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */,
+				003572D12DDAE23500810FD6 /* SnapKitLayoutController.swift */,
 			);
 			path = "Fifth(第五篇)";
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				00B99F0F2DD5BFB0009591C7 /* BoxSizingController.swift in Sources */,
 				70FDFA6120FF9E2600FAA8FE /* TweetStore.swift in Sources */,
 				7091DD052100D57400774FE9 /* MD5.swift in Sources */,
+				003572D22DDAE23500810FD6 /* SnapKitLayoutController.swift in Sources */,
 				7099433D20F8751D00028FC5 /* BCZViewController.swift in Sources */,
 				00B99F0B2DD5B852009591C7 /* ReBuildController.swift in Sources */,
 				7099433B20F874D400028FC5 /* TaobaoSearchVC.swift in Sources */,

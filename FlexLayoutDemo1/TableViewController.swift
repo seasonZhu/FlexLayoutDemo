@@ -58,6 +58,8 @@ class TableViewController: UITableViewController {
                 navigationController?.pushViewController(DisplayFuncController(), animated: true)
             case 2:
                 navigationController?.pushViewController(BoxSizingController(), animated: true)
+            case 3:
+                navigationController?.pushViewController(SnapKitLayoutController(), animated: true)
             default:
                 break
             }
