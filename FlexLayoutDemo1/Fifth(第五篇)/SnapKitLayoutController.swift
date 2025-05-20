@@ -110,3 +110,69 @@ class SnapKitLayoutController: UIViewController {
         rootFlexContainer.flex.layout()
     }
 }
+
+import NSObject_Rx
+import RxCocoa
+
+class TagsView: UIView {
+    let rootFlexContainer = UIView()
+    
+    let relay = PublishRelay<[String]>()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(rootFlexContainer)
+        relay.subscribe(onNext: { [weak self] in
+            self?.setTags($0)
+        }).disposed(by: rx.disposeBag)
+    }
+    
+    required init?(coder: NSCoder) { fatalError() }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        rootFlexContainer.pin.all()
+        rootFlexContainer.flex.layout()
+        //flex.layout()
+    }
+    
+    func setTags(_ tags: [String]) {
+        rootFlexContainer.flex.marginTop(88).define { flex in
+            flex.removeAllElement()
+            for tag in tags {
+                flex.addItem().padding(8).backgroundColor(.lightGray).define { flex in
+                    flex.addItem(UILabel()).margin(4).define { flex in
+                        (flex.view as? UILabel)?.text = tag
+                    }
+                }
+            }
+        }
+        setNeedsLayout()
+    }
+    
+    deinit {
+        print("\(TagsView.self)被销毁了")
+    }
+}
+
+/// 这里其实隐藏着一个最小的MVVM模型
+/// 我感觉通过FlexLayout/RxCocoa/Resolver可以构建一个理想的MVVM结构
+class MVVMController: UIViewController {
+    let tagsView = TagsView()
+    
+    let tagsRelay = BehaviorRelay<[String]>(value: ["RxSwift", "RxCocoa"])
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        view.addSubview(tagsView)
+        tagsView.frame = view.bounds
+        
+        tagsRelay.bind(to: tagsView.relay).disposed(by: rx.disposeBag)
+    }
+    
+    deinit {
+        print("\(MVVMController.self)被销毁了")
+    }
+}
