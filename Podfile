@@ -19,6 +19,8 @@ target 'FlexLayoutDemo1' do
   
   pod 'Hero'
   
+  pod 'R.swift'
+  
   # Debug only
   # pod 'Reveal-SDK', '4', :configurations => ['Debug']
 

@@ -6,6 +6,7 @@ PODS:
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
   - PinLayout (1.10.5)
+  - R.swift (7.8.0)
   - RxCocoa (6.9.0):
     - RxRelay (= 6.9.0)
     - RxSwift (= 6.9.0)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - Kingfisher
   - "NSObject+Rx"
   - PinLayout
+  - R.swift
   - RxCocoa
   - RxGesture
   - SnapKit
@@ -35,6 +37,7 @@ SPEC REPOS:
     - Kingfisher
     - "NSObject+Rx"
     - PinLayout
+    - R.swift
     - RxCocoa
     - RxGesture
     - RxRelay
@@ -48,6 +51,7 @@ SPEC CHECKSUMS:
   Kingfisher: 0621d0ac0c78fecb19f6dc5303bde2b52abaf2f5
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   PinLayout: f6c2b63a5a5b24864064e1d15c67de41b4e74748
+  R.swift: f573269ca45b2ab066c082e363dd4c2b297b0d71
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
@@ -55,6 +59,6 @@ SPEC CHECKSUMS:
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: 6a6be0d75bdc5d90a0cfd98366667a7533bcf7c0
+PODFILE CHECKSUM: fd957a31b9da4f2c91f850af56bf83e3afd27f58
 
 COCOAPODS: 1.16.2

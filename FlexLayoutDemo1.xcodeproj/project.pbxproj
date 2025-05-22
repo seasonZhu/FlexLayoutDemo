@@ -192,6 +192,7 @@
 			buildConfigurationList = 7099433220F870A900028FC5 /* Build configuration list for PBXNativeTarget "FlexLayoutDemo1" */;
 			buildPhases = (
 				198082F70CF76E4D07FB4BC1 /* [CP] Check Pods Manifest.lock */,
+				00BB04D42DDEB6BF009CD2A4 /* ShellScript */,
 				7099431C20F870A700028FC5 /* Sources */,
 				7099431D20F870A700028FC5 /* Frameworks */,
 				7099431E20F870A700028FC5 /* Resources */,
@@ -254,6 +255,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00BB04D42DDEB6BF009CD2A4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$SRCROOT/R.generated.swift ",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		198082F70CF76E4D07FB4BC1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,7 +486,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.darkhandz.FlexLayoutDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -487,7 +506,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.darkhandz.FlexLayoutDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
