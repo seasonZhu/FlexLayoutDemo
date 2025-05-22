@@ -12,7 +12,11 @@ import UIKit
 import FlexLayout
 
 class ReBuildController: UIViewController {
-    let rootFlexContainer = UIView()
+    
+    fileprivate let contentView = UIScrollView()
+    
+    fileprivate let rootFlexContainer = UIView()
+    
     var data: [String] = ["Item 1", "Item 2", "Item 3"] // 数据源
 
     override func viewDidLoad() {
@@ -20,7 +24,11 @@ class ReBuildController: UIViewController {
         
         view.backgroundColor = .white
         
-        view.addSubview(rootFlexContainer)
+        rootFlexContainer.backgroundColor = .white
+        
+        contentView.addSubview(rootFlexContainer)
+        
+        view.addSubview(contentView)
 
         // 初始化布局
         setupLayout()
@@ -30,7 +38,7 @@ class ReBuildController: UIViewController {
     }
 
     func setupLayout() {
-        rootFlexContainer.flex.marginTop(88).define { flex in
+        rootFlexContainer.flex.define { flex in
 
             // 根据数据源动态创建视图
             for (index, item) in data.enumerated() {
@@ -73,7 +81,7 @@ class ReBuildController: UIViewController {
         setupLayout()
 
         // 更新布局
-        rootFlexContainer.flex.layout()
+        contentView.flex.layout(mode: .adjustHeight)
     }
 
     @objc func deleteItem(_ sender: UIButton) {
@@ -87,13 +95,21 @@ class ReBuildController: UIViewController {
         setupLayout()
 
         // 更新布局
-        rootFlexContainer.flex.layout()
+        contentView.flex.layout(mode: .adjustHeight)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        rootFlexContainer.frame = view.bounds
-        rootFlexContainer.flex.layout()
+        
+        // 1) Layout the contentView & rootFlexContainer using PinLayout
+        contentView.frame = view.bounds
+        rootFlexContainer.pin.top().left().right().bottom()
+
+        // 2) Let the flexbox container layout itself and adjust the height
+        rootFlexContainer.flex.layout(mode: .adjustHeight)
+        
+        // 3) Adjust the scrollview contentSize
+        contentView.contentSize = rootFlexContainer.frame.size
     }
 }
 
