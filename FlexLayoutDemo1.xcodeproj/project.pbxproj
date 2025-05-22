@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		003572D22DDAE23500810FD6 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003572D12DDAE23500810FD6 /* SnapKitLayoutController.swift */; };
+		0045C1CC2DDDA61D005924C1 /* MyCustomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045C1CB2DDDA61D005924C1 /* MyCustomController.swift */; };
 		00B99F0B2DD5B852009591C7 /* ReBuildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0A2DD5B852009591C7 /* ReBuildController.swift */; };
 		00B99F0D2DD5B915009591C7 /* DisplayFuncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */; };
 		00B99F0F2DD5BFB0009591C7 /* BoxSizingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		003572D12DDAE23500810FD6 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
+		0045C1CB2DDDA61D005924C1 /* MyCustomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomController.swift; sourceTree = "<group>"; };
 		00B99F0A2DD5B852009591C7 /* ReBuildController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReBuildController.swift; sourceTree = "<group>"; };
 		00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayFuncController.swift; sourceTree = "<group>"; };
 		00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxSizingController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				00B99F0C2DD5B915009591C7 /* DisplayFuncController.swift */,
 				00B99F0E2DD5BFB0009591C7 /* BoxSizingController.swift */,
 				003572D12DDAE23500810FD6 /* SnapKitLayoutController.swift */,
+				0045C1CB2DDDA61D005924C1 /* MyCustomController.swift */,
 			);
 			path = "Fifth(第五篇)";
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				7099432420F870A700028FC5 /* AppDelegate.swift in Sources */,
 				7099433720F872A200028FC5 /* TableViewController.swift in Sources */,
 				70FDFA5B20FF910000FAA8FE /* TweetCell.swift in Sources */,
+				0045C1CC2DDDA61D005924C1 /* MyCustomController.swift in Sources */,
 				70F73A0820FDB72200D436CA /* MyWalletVC.swift in Sources */,
 				70F73A0A20FDB74100D436CA /* MyWalletView.swift in Sources */,
 			);
